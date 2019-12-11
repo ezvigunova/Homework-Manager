@@ -1,0 +1,63 @@
+﻿<%--***************************************
+* hwViewer.master
+* Evgeniya Zvigunova
+*
+* Master page for the Evgeniya's CS322
+* homework assignments website.
+***************************************--%>
+
+<%@ Master Language="C#" %>
+<%@ Import Namespace="System.IO" %>
+
+<!doctype html>
+<html>
+<head runat="server">
+<title>
+  <asp:ContentPlaceHolder id="title" runat="server"/>
+</title>
+  <script runat="server">
+  public void Page_Load()
+  {
+    string filePath = Request.PhysicalPath;
+    FileInfo file = new FileInfo(filePath);
+  }
+</script>
+</head>
+
+<body>
+<form runat="server">
+  <asp:Table runat="server">
+    <asp:TableRow runat="server">
+      <asp:TableHeaderCell ColumnSpan="2" 
+        Rowspan="1" runat="server">
+        <h1>Evgeniya Zvigunova - Projects</h1>
+      </asp:TableHeaderCell>
+    </asp:TableRow>
+    <asp:TableRow VerticalAlign="Top" runat="server">
+      <asp:TableCell width="140" runat="server">
+        <asp:TreeView NodeWrap="true" runat="server">          
+          <Nodes>
+            <asp:TreeNode Text="Home" 
+              NavigateUrl="hwViewer.aspx">
+              <asp:TreeNode Text="Golden Rectangle"
+                NavigateUrl="GoldenRectangleContent.aspx">
+              </asp:TreeNode>
+              <asp:TreeNode Text="Replace Text"
+                NavigateUrl="ReplaceAllContent.aspx">
+              </asp:TreeNode>
+              <asp:TreeNode Text="Water Quiz"
+                NavigateUrl="waterQuizContent.aspx">
+              </asp:TreeNode>
+            </asp:TreeNode>
+          </Nodes>
+        </asp:TreeView>
+      </asp:TableCell>
+      <asp:TableCell runat="server">
+        <asp:ContentPlaceHolder id="pageContent" 
+          runat="server"/>                  
+        </asp:TableCell>
+      </asp:TableRow>
+  </asp:Table>
+</form>
+</body>
+</html>
